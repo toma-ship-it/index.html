@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toma</title>
+    
+    <!-- Monospace & Retro Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=VT323&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- DAWN-INSPIRED PASTEL PALETTE & Y2K STYLING --- */
+        :root {
+            --bg-color: #f3f0f9;           /* Soft pastel lilac/white */
+            --border-color: #5b5570;       /* Muted retro violet-grey border */
+            
+            /* Section Box Colors (Dawn Entrance Look Inspired) */
+            --box-blue: #c4dcf0;           /* Soft pastel periwinkle blue */
+            --box-pink: #f7d6e0;           /* Muted pastel pink */
+            --box-green: #d2f0d0;          /* Soft mint green */
+            --box-yellow: #fcf4dd;         /* Soft butter yellow */
+            
+            --text-color: #312b40;         /* Dark lavender-grey for readable contrast */
+            --subtle-text: #605770;
+        }
+
+        body {
+            font-family: 'Fira Code', monospace, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 30px 15px;
+            display: flex;
+            justify-content: center;
+            /* Retro grid pattern */
+            background-image: 
+                linear-gradient(to right, rgba(91, 85, 112, 0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(91, 85, 112, 0.06) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 580px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* --- RETRO CONTAINER / SECTION BOXES --- */
+        .section-box {
+            border: 1.5px solid var(--border-color);
+            box-shadow: 3px 3px 0px rgba(91, 85, 112, 0.2);
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Profile Top Box */
+        .box-header-profile {
+            background-color: var(--box-blue);
+            padding: 16px;
+            border-bottom: 1.5px solid var(--border-color);
+        }
+
+        .url-bar {
+            font-size: 0.8rem;
+            color: var(--subtle-text);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .profile-content {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border: 1.5px solid var(--border-color);
+            background: #fff;
+        }
+
+        .profile-info h1 {
+            font-family: 'VT323', monospace;
+            font-size: 2.2rem;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .profile-info .subtitle {
+            font-size: 0.85rem;
+            margin: 4px 0 8px 0;
+            color: var(--subtle-text);
+        }
+
+        .profile-info .bio {
+            font-size: 0.85rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* --- COLLAPSIBLE / LIST SECTIONS --- */
+        details {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        details:last-child {
+            border-bottom: none;
+        }
+
+        summary {
+            font-weight: 600;
+            padding: 10px 14px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        summary:hover {
+            opacity: 0.85;
+        }
+
+        .box-pink summary { background-color: var(--box-pink); }
+        .box-green summary { background-color: var(--box-green); }
+        .box-yellow summary { background-color: var(--box-yellow); }
+
+        .details-content {
+            padding: 14px;
+            background-color: #ffffff;
+        }
+
+        /* Retro Item List */
+        .retro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .retro-list li {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            background-color: #fafafa;
+            font-size: 0.85rem;
+        }
+
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .photo-card {
+            border: 1px solid var(--border-color);
+            background: #fff;
+            padding: 6px;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid var(--border-color);
+        }
+
+        .photo-caption {
+            padding-top: 6px;
+            font-size: 0.75rem;
+            text-align: center;
+            color: var(--subtle-text);
+        }
+
+        /* Buttons / Socials */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .retro-btn {
+            display: block;
+            text-align: center;
+            padding: 8px 12px;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.15s ease;
+        }
+
+        .retro-btn:hover {
+            background-color: var(--box-yellow);
+            box-shadow: 2px 2px 0px var(--border-color);
+            transform: translate(-1px, -1px);
+        }
+
+        /* Footer Accent Note */
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 6px;
+            background-color: var(--box-yellow);
+            border: 1px dashed var(--border-color);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+
+        <!-- HEADER / PROFILE BOX -->
+        <div class="section-box">
+            <div class="box-header-profile">
+                <div class="url-bar">toma.site</div>
+                <div class="profile-content">
+                    <img src="avatar.jpg" alt="Avatar" class="avatar">
+                    <div class="profile-info">
+                        <h1>Asta sunt eu</h1>
+                        <p class="subtitle">O sa imi fac un blog la 25 de ani</p>
+                        <p class="bio">Nu am ceva mai bun de facut in momentul de fata asa ca am decis sa fac asta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN COLLAPSIBLE SECTIONS CONTAINER -->
+        <div class="section-box">
+            
+            <!-- SECTION 1: ACTIVITIES / PREFERENCES -->
+            <div class="box-pink">
+                <details open>
+                    <summary>v Ce imi place sa fac</summary>
+                    <div class="details-content">
+                        <ul class="retro-list">
+                            <li>> Sa ma joc: Sunt un chud</li>
+                            <li>> Sa mananc: Sunt gras</li>
+                            <li>> Sa fumez: Daca fac un tierlist o sa il atasez</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- SECTION 2: PHOTO GALLERY -->
+            <div class="box-green">
+                <details open>
+                    <summary>v Poze bune</summary>
+                    <div class="details-content">
+                        <div class="photo-grid">
+                            <div class="photo-card">
+                                <img src="fundal.JPG" alt="Party">
+                                <div class="photo-caption">Ce-a mai bomba petrecere</div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="CamScanner 20.07.2026 11.07_1.jpg" alt="Nature walk">
+                                <div class="photo-caption">Am luat bacul</div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="gemeni.PNG" alt="Warm tea">
+                                <div class="photo-caption">Se putea sa semanam mai rau</div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- SECTION 3: SOCIAL LINKS -->
+            <div class="box-yellow">
+                <details open>
+                    <summary>v Socials</summary>
+                    <div class="details-content">
+                        <div class="links-container">
+                            <a href="https://instagram.com/rareswef" target="_blank" rel="noopener noreferrer" class="retro-btn">
+                                > Instagram
+                            </a>
+                            <a href="https://twitter.com/tomataveev" target="_blank" rel="noopener noreferrer" class="retro-btn">
+                                > X / Twitter
+                            </a>
+                            <a href="https://op.gg/lol/summoners/eune/Shauna%20Shipman-toma" target="_blank" rel="noopener noreferrer" class="retro-btn">
+                                > Op.GG
+                            </a>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM NOTE -->
+        <div class="footer-note">
+            Chiar nu imi este rusine sa ma afisez <3
+        </div>
+
+    </div>
+
+</body>
+</html>
